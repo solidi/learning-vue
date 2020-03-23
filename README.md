@@ -23,8 +23,19 @@
 1. ``.<name>-leave-to, <name>-enter and <name>-enter-active and <name>-leave-active`` for grouping CSS transitions.
 1. For those CSS transition elements that are not parsed correctly, use ``is="transition-group"`` attribute in element.
 
+## Components
+
+1. For reusability, encapsulation, portability, organization, and readility.
+1. W3C standard states that custom component name must include a hypen.
+1. Props are passed into components as an array.
+1. Slots take in element data inbetween the component tags. Slots can contain names for default values.
+1. To raise events, use ``this.$emit('<function name>', parameter(s))`` to route the event to parent (root).
+1. Module bundler - vue-cli - webpack, rollup or parcel. Hot reloading is supported.
+
 ## Resources
 
 1. [Vue JS](https://vuejs.org/v2/guide/)
 1. [JSDelivr](https://www.jsdelivr.com/)
 1. [Vue Devtools](https://github.com/vuejs/vue-devtools)
+1. [Awesome Vue](https://github.com/vuejs/awesome-vue)
+1. [Vue Curated](https://curated.vuejs.org)
