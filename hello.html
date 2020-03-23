@@ -1,30 +1,58 @@
 <!DOCTYPE html>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
 
 <div id="app">
     <div class="container">
-        <form class="mt-5">
+        <form v-if="!submitted" class="mt-5">
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" v-model="email" class="form-control form-control-lg">
             </div>
             <button type="submit" v-on:click.prevent="process" class="btn btn-primary">Submit</button>
         </form>
+        <h2 v-else="submitted" v-cloak class="mt-5">Thank you!</h2>
+    </div>
+
+    <div class="container">
+        <img :src="imgSrc" :title="imgTitle" />
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <script>
     var vm = new Vue({
         el: '#app',
         data: {
-            email: 'mike@example.com'
+            email: 'mike@example.com',
+            submitted: false,
+            imgSrc: '',
+            imgTitle: ''
+        },
+        created: function() {
+            this.fetchApod();
         },
         methods: {
             process: function() {
-                alert('Submitted ' + this.email);
+                this.submitted = true;
+            },
+
+            fetchApod: function() {
+                var apiKey = 'acTis5qGhbjLU82K4RFX0jLdfccqojsns79kUDDv';
+                var url = 'https://api.nasa.gov/planetary/apod?api_key=' + apiKey;
+
+                axios.get(url)
+                    .then(function(res) {
+                    vm.imgSrc = res.data.url;
+                    vm.imgTitle = res.data.title;
+                    });
             }
         }
     });
