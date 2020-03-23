@@ -18,6 +18,10 @@
 1. ``v-for="(a, index) in items"`` for looping through a data set.
 1. ``:key`` for patching arrays in place for performance improvements.
 1. ``:style`` for binding styles. Element style is base style, ``v-bind:style`` overrides.
+1. ``:class`` for bindiing classes.
+1. ``<transition> and <transition-group tag="tagnametoreplace">`` used for grouping transitional elements for CSS.
+1. ``.<name>-leave-to, <name>-enter and <name>-enter-active and <name>-leave-active`` for grouping CSS transitions.
+1. For those CSS transition elements that are not parsed correctly, use ``is="transition-group"`` attribute in element.
 
 ## Resources
 
